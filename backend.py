@@ -15,12 +15,16 @@ class RequestState(BaseModel):
 from fastapi import FastAPI
 from ai_agent import get_response_from_ai_agent
 
-ALLOWED_MODEL_NAMES=["llama3-70b-8192", "mixtral-8x7b-32768", "llama-3.3-70b-versatile", "gpt-4o-mini"]
+ALLOWED_MODEL_NAMES = [
+    "gemini-1.5-flash",
+    "gemini-1.5-pro"
+]
+
 
 app=FastAPI(title="LangGraph AI Agent")
 
 @app.post("/chat")
-def chat_endpoint(request: RequestState): 
+def chat_endpoint(request: RequestState):  
     """
     API Endpoint to interact with the Chatbot using LangGraph and search tools.
     It dynamically selects the model specified in the request
