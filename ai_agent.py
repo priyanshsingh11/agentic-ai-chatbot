@@ -30,7 +30,7 @@ agent = create_react_agent(
     tools=[search_tool],
     state_modifier=system_prompt
 )
-
+ 
 # Query
 query = "Tell me about the crypto market in 2024."
 
