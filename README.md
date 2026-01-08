@@ -47,31 +47,32 @@ agentic-chatbot/
 
 
 ## Digram
+
 ```mermaid
 flowchart LR
 
-    User -->|Input| UI
+    User --> UI
 
-    UI[Streamlit Frontend<br/>frontend.py]
-        -->|HTTP Request| API
+    UI[Streamlit Frontend frontend.py]
+        --> API
 
-    API[FastAPI Backend<br/>backend.py]
+    API[FastAPI Backend backend.py]
         --> Agent
 
-    Agent[AI Agent<br/>LangGraph + ReAct<br/>ai_agent.py]
+    Agent[AI Agent ai_agent.py]
 
-    Agent -->|Prompt| LLM
-    LLM -->|Response| Agent
+    Agent --> LLM
+    LLM --> Agent
 
     Agent --> API
-    API -->|JSON Response| UI
-    UI -->|Output| User
+    API --> UI
+    UI --> User
 
-    LLM[LLM Providers<br/>OpenAI | Gemini | Groq]
+    LLM[LLM Providers OpenAI Gemini Groq]
 
-    Agent -->|Optional Search| Tool
+    Agent --> Tool
     Tool[Tavily Search API]
-        -->|Results| Agent
+        --> Agent
 
 ```
 ## Component Description
