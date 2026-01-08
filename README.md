@@ -3,8 +3,6 @@
 An agent-based conversational AI application built using LangGraph, FastAPI, and Streamlit.  
 This project demonstrates a clean and modular approach to designing a stateful AI system with a backend API and a lightweight frontend interface.
 
----
-
 <hr/>
 
 <h2>File Structure</h2>
@@ -21,9 +19,6 @@ agentic-chatbot/
 </pre>
 
 <hr/>
-
-
----
 
 ## Component Description
 
