@@ -31,17 +31,28 @@ Response to Client
 - LLM providers and tools are abstracted for easy replacement
 
 ---
+# Project Structure
 
-## Project Structure
-project_structure:
-  agentic-chatbot:
-    backend.py: FastAPI application and API routing
-    ai_agent.py: LangGraph agent definition and execution logic
-    frontend.py: Streamlit-based user interface
-    .env: Environment variables (API keys)
-    requirements.txt: Python dependencies
-    README.md: Project documentation
+## agentic-chatbot/
 
+### backend.py
+FastAPI application responsible for API routing, request validation, and communication between the frontend and the LangGraph agent.
+
+### ai_agent.py
+Defines the LangGraph agent, including state management, reasoning logic, tool invocation, and LLM interaction.
+
+### frontend.py
+Streamlit-based user interface that handles user input, displays chat history, and renders AI responses.
+
+### .env
+Stores environment variables such as API keys for LLM providers and external tools.  
+**This file should not be committed to version control.**
+
+### requirements.txt
+Lists all Python dependencies required to run the project.
+
+### README.md
+Project documentation describing system architecture, design principles, and usage instructions.
 
 ---
 
