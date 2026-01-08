@@ -9,7 +9,6 @@ This project demonstrates a clean and modular approach to designing a stateful A
 
 <pre>
 agentic-chatbot/
-│
 ├── backend.py
 ├── ai_agent.py
 ├── frontend.py
@@ -21,8 +20,6 @@ agentic-chatbot/
 <hr/>
 
 ## Digram
-## 🏗️ Architecture
-
 ```mermaid
 flowchart LR
 
