@@ -19,24 +19,21 @@ agentic-chatbot/
 </pre>
 
 <hr/>
+## 🏗️ Architecture
 
-## Diagram
-``` flowchart LR
-    %% ======================
+```mermaid
+flowchart LR
+
     %% Client Layer
-    %% ======================
     subgraph Client
         U[User]
         FE[Frontend<br/>Streamlit / React]
         U -->|actions| FE
     end
 
-    %% ======================
     %% Backend Layer
-    %% ======================
     subgraph Backend
         API[FastAPI<br/>REST API]
-
         AG[LangGraph Agent<br/>Stateful Controller]
 
         RS[risk_scoring.py]
@@ -46,7 +43,6 @@ agentic-chatbot/
         AS[ai_summarizer.py]
 
         API --> AG
-
         AG --> RS
         AG --> RG
         AG --> GA
@@ -54,38 +50,31 @@ agentic-chatbot/
         AG --> AS
     end
 
-    %% ======================
     %% Data Sources
-    %% ======================
     subgraph Data_Sources["Data Sources"]
         CSV[CSV Files<br/>generated-data]
         NEO[Neo4j<br/>(optional)]
         FS[Firestore<br/>(optional)]
     end
 
-    %% ======================
-    %% LLM & Tools
-    %% ======================
+    %% External Services
     LLM[LLM Provider<br/>OpenAI / Groq]
     WS[Web Search Tool]
 
-    %% ======================
     %% Connections
-    %% ======================
-    FE -->|JSON / Upload CSV| API
-    API -->|JSON Response| FE
+    FE -->|JSON / CSV Upload| API
+    API -->|Response| FE
 
-    AG -->|Prompt / Context| LLM
-    LLM -->|Generated Text| AG
+    AG -->|Prompt| LLM
+    LLM -->|Completion| AG
 
-    AG -->|Search Query| WS
-    WS -->|Search Result| AG
+    AG -->|Query| WS
+    WS -->|Results| AG
 
     RS -->|AlertScores.csv| CSV
     GA --> NEO
     CM --> FS
 ```
-
 ## Component Description
 
 ### backend.py
