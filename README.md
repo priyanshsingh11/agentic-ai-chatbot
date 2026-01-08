@@ -267,5 +267,6 @@ The `.env` file should not be committed to version control.
 - Production-oriented project layout
 
 ---
+**Summary:**  
+The system follows a layered client–server architecture where the Streamlit frontend captures user input and forwards it to a FastAPI backend. The backend acts as an orchestration layer, invoking a LangGraph-based agent that manages stateful reasoning and optional tool usage. The agent interacts with the selected language model to generate responses, which are then returned back through the backend and rendered to the user in the frontend.
 
-## Summary
