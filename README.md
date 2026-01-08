@@ -21,25 +21,24 @@ agentic-chatbot/
 <hr/>
 
 ## Diagram
-flowchart TD
-    U[User] -->|Input| S[Streamlit Frontend]
+flowchart LR
+    U[User] -->|Query| UI[Streamlit Frontend]
 
-    S -->|HTTP POST /chat| F[FastAPI Backend]
+    UI -->|POST /chat| API[FastAPI Backend]
 
-    F -->|Validated Request| A[LangGraph Agent]
+    API -->|Validated Input| AG[LangGraph Agent]
 
-    A -->|Reasoning & Planning| L[LLM Provider]
-    L -->|Model Response| A
+    AG -->|Reasoning Step| LLM[LLM Provider]
+    LLM -->|LLM Output| AG
 
-    A -->|Tool Decision| T{Need Tool?}
-    T -->|Yes| W[Web Search / Tools]
-    W -->|Tool Result| A
-    T -->|No| A
+    AG -->|Decision| D{Need Tool?}
+    D -->|Yes| TOOL[Web Search / External Tools]
+    TOOL -->|Tool Result| AG
+    D -->|No| AG
 
-    A -->|Final Response| F
-    F -->|JSON Response| S
-    S -->|Rendered Output| U
-
+    AG -->|Final Response| API
+    API -->|JSON Response| UI
+    UI -->|Rendered Output| U
 
 ## Component Description
 
