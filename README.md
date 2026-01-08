@@ -21,20 +21,22 @@ agentic-chatbot/
 <hr/>
 
 ## Digram
+## 🏗️ Architecture
+
 ```mermaid
 flowchart LR
 
     %% Client Layer
     subgraph Client
         U[User]
-        FE[Frontend<br/>Streamlit / React]
+        FE[Frontend - Streamlit / React]
         U -->|actions| FE
     end
 
     %% Backend Layer
     subgraph Backend
-        API[FastAPI<br/>REST API]
-        AG[LangGraph Agent<br/>Stateful Controller]
+        API[FastAPI REST API]
+        AG[LangGraph Agent - Stateful Controller]
 
         RS[risk_scoring.py]
         RG[report_generator.py]
@@ -52,17 +54,17 @@ flowchart LR
 
     %% Data Sources
     subgraph Data_Sources["Data Sources"]
-        CSV[CSV Files<br/>generated-data]
-        NEO[Neo4j<br/>(optional)]
-        FS[Firestore<br/>(optional)]
+        CSV[CSV Files]
+        NEO[Neo4j optional]
+        FS[Firestore optional]
     end
 
     %% External Services
-    LLM[LLM Provider<br/>OpenAI / Groq]
+    LLM[LLM Provider OpenAI or Groq]
     WS[Web Search Tool]
 
     %% Connections
-    FE -->|JSON / CSV Upload| API
+    FE -->|JSON or CSV Upload| API
     API -->|Response| FE
 
     AG -->|Prompt| LLM
@@ -71,10 +73,10 @@ flowchart LR
     AG -->|Query| WS
     WS -->|Results| AG
 
-    RS -->|AlertScores.csv| CSV
+    RS -->|AlertScores CSV| CSV
     GA --> NEO
     CM --> FS
-```
+
 ## Component Description
 
 ### backend.py
