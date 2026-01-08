@@ -21,24 +21,70 @@ agentic-chatbot/
 <hr/>
 
 ## Diagram
-flowchart LR
-    U[User] -->|Query| UI[Streamlit Frontend]
+``` flowchart LR
+    %% ======================
+    %% Client Layer
+    %% ======================
+    subgraph Client
+        U[User]
+        FE[Frontend<br/>Streamlit / React]
+        U -->|actions| FE
+    end
 
-    UI -->|POST /chat| API[FastAPI Backend]
+    %% ======================
+    %% Backend Layer
+    %% ======================
+    subgraph Backend
+        API[FastAPI<br/>REST API]
 
-    API -->|Validated Input| AG[LangGraph Agent]
+        AG[LangGraph Agent<br/>Stateful Controller]
 
-    AG -->|Reasoning Step| LLM[LLM Provider]
-    LLM -->|LLM Output| AG
+        RS[risk_scoring.py]
+        RG[report_generator.py]
+        GA[graph_analysis.py]
+        CM[case_manager.py]
+        AS[ai_summarizer.py]
 
-    AG -->|Decision| D{Need Tool?}
-    D -->|Yes| TOOL[Web Search / External Tools]
-    TOOL -->|Tool Result| AG
-    D -->|No| AG
+        API --> AG
 
-    AG -->|Final Response| API
-    API -->|JSON Response| UI
-    UI -->|Rendered Output| U
+        AG --> RS
+        AG --> RG
+        AG --> GA
+        AG --> CM
+        AG --> AS
+    end
+
+    %% ======================
+    %% Data Sources
+    %% ======================
+    subgraph Data_Sources["Data Sources"]
+        CSV[CSV Files<br/>generated-data]
+        NEO[Neo4j<br/>(optional)]
+        FS[Firestore<br/>(optional)]
+    end
+
+    %% ======================
+    %% LLM & Tools
+    %% ======================
+    LLM[LLM Provider<br/>OpenAI / Groq]
+    WS[Web Search Tool]
+
+    %% ======================
+    %% Connections
+    %% ======================
+    FE -->|JSON / Upload CSV| API
+    API -->|JSON Response| FE
+
+    AG -->|Prompt / Context| LLM
+    LLM -->|Generated Text| AG
+
+    AG -->|Search Query| WS
+    WS -->|Search Result| AG
+
+    RS -->|AlertScores.csv| CSV
+    GA --> NEO
+    CM --> FS
+```
 
 ## Component Description
 
