@@ -18,6 +18,36 @@ agentic-chatbot/
 </pre>
 
 <hr/>
+---
+
+## Tech Stack
+
+### Frontend
+- **Streamlit** – Interactive web-based user interface
+
+### Backend
+- **FastAPI** – High-performance API server  
+- **Pydantic** – Request and response schema validation
+
+### Agent & AI
+- **LangGraph** – Stateful agent workflow and control flow  
+- **LangChain** – LLM abstractions and tool integrations  
+- **ReAct Agent** – Reasoning and action-based agent pattern
+
+### LLM Providers
+- **OpenAI**  
+- **Gemini**  
+- **Groq**
+
+### Tools
+- **Tavily Search** – Optional web search tool
+
+### Configuration & Environment
+- **Python Dotenv** – Environment variable management
+
+### Programming Language
+- **Python**
+
 
 ## Digram
 ```mermaid
