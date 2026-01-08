@@ -76,7 +76,7 @@ flowchart LR
     RS -->|AlertScores CSV| CSV
     GA --> NEO
     CM --> FS
-
+```
 ## Component Description
 
 ### backend.py
