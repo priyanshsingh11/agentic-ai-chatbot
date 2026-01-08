@@ -19,8 +19,8 @@ agentic-chatbot/
 </pre>
 
 <hr/>
-## 🏗️ Architecture
 
+## Digram
 ```mermaid
 flowchart LR
 
