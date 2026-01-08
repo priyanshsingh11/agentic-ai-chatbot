@@ -26,7 +26,7 @@ with st.sidebar:
 
     model_name = st.selectbox(
         "Select Gemini Model",
-        ["gemini-1.5-flash", "gemini-1.5-pro"]
+        ["gemini-1.5-flash"]
     )
 
     allow_search = st.checkbox("Enable Web Search (Tavily)", value=True)

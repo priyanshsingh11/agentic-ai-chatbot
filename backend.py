@@ -16,10 +16,9 @@ from fastapi import FastAPI
 from ai_agent import get_response_from_ai_agent
 
 ALLOWED_MODEL_NAMES = [
-    "gemini-1.5-flash",
-    "gemini-1.5-pro"
+    "gemini-1.0-pro",
+    "gemini-1.5-flash"
 ]
-
 
 app=FastAPI(title="LangGraph AI Agent")
 
