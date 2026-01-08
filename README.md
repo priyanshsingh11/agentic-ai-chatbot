@@ -20,6 +20,27 @@ agentic-chatbot/
 
 <hr/>
 
+## Diagram
+flowchart TD
+    U[User] -->|Input| S[Streamlit Frontend]
+
+    S -->|HTTP POST /chat| F[FastAPI Backend]
+
+    F -->|Validated Request| A[LangGraph Agent]
+
+    A -->|Reasoning & Planning| L[LLM Provider]
+    L -->|Model Response| A
+
+    A -->|Tool Decision| T{Need Tool?}
+    T -->|Yes| W[Web Search / Tools]
+    W -->|Tool Result| A
+    T -->|No| A
+
+    A -->|Final Response| F
+    F -->|JSON Response| S
+    S -->|Rendered Output| U
+
+
 ## Component Description
 
 ### backend.py
