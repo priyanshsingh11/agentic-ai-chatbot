@@ -31,45 +31,37 @@ Response to Client
 - LLM providers and tools are abstracted for easy replacement
 
 ---
-# Project Structure
-<h1>Project Structure</h1>
+# <hr/>
 
-<h2>agentic-chatbot/</h2>
+<h2>Tech Stack</h2>
 
-<h2>backend.py</h2>
-<p>
-FastAPI application responsible for API routing, request validation, and
-orchestrating communication between the frontend and the LangGraph agent.
-</p>
+<ul>
+  <li><strong>Frontend:</strong> Streamlit</li>
+  <li><strong>Backend:</strong> FastAPI</li>
+  <li><strong>Agent Framework:</strong> LangGraph</li>
+  <li><strong>LLM Providers:</strong> OpenAI, Gemini, Groq</li>
+  <li><strong>Tools:</strong> Tavily Web Search (Optional)</li>
+  <li><strong>Configuration:</strong> Python Dotenv (.env)</li>
+  <li><strong>Language:</strong> Python</li>
+</ul>
 
-<h2>ai_agent.py</h2>
-<p>
-Defines the LangGraph agent, including state management, reasoning logic,
-tool invocation, and interaction with the language model.
-</p>
+<hr/>
 
-<h2>frontend.py</h2>
-<p>
-Streamlit-based user interface that collects user input, displays chat history,
-and renders AI-generated responses.
-</p>
+<h2>File Structure</h2>
 
-<h2>.env</h2>
-<p>
-Stores environment variables such as API keys for LLM providers and external tools.
-This file should not be committed to version control.
-</p>
+<pre>
+agentic-chatbot/
+│
+├── backend.py
+├── ai_agent.py
+├── frontend.py
+├── .env
+├── requirements.txt
+└── README.md
+</pre>
 
-<h2>requirements.txt</h2>
-<p>
-Contains the list of Python dependencies required to run the project.
-</p>
+<hr/>
 
-<h2>README.md</h2>
-<p>
-Project documentation describing the system architecture, design decisions,
-and usage instructions.
-</p>
 
 ---
 
