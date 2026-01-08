@@ -16,12 +16,9 @@ agentic-chatbot/
 ├── requirements.txt
 └── README.md
 </pre>
-
-<hr/>
 ---
 
 ## Tech Stack
-
 ### Frontend
 - **Streamlit** – Interactive web-based user interface
 
@@ -53,56 +50,29 @@ agentic-chatbot/
 ```mermaid
 flowchart LR
 
-    %% Client Layer
-    subgraph Client
-        U[User]
-        FE[Frontend - Streamlit / React]
-        U -->|actions| FE
-    end
+    User -->|Input| UI
 
-    %% Backend Layer
-    subgraph Backend
-        API[FastAPI REST API]
-        AG[LangGraph Agent - Stateful Controller]
+    UI[Streamlit Frontend<br/>frontend.py]
+        -->|HTTP Request| API
 
-        RS[risk_scoring.py]
-        RG[report_generator.py]
-        GA[graph_analysis.py]
-        CM[case_manager.py]
-        AS[ai_summarizer.py]
+    API[FastAPI Backend<br/>backend.py]
+        --> Agent
 
-        API --> AG
-        AG --> RS
-        AG --> RG
-        AG --> GA
-        AG --> CM
-        AG --> AS
-    end
+    Agent[AI Agent<br/>LangGraph + ReAct<br/>ai_agent.py]
 
-    %% Data Sources
-    subgraph Data_Sources["Data Sources"]
-        CSV[CSV Files]
-        NEO[Neo4j optional]
-        FS[Firestore optional]
-    end
+    Agent -->|Prompt| LLM
+    LLM -->|Response| Agent
 
-    %% External Services
-    LLM[LLM Provider OpenAI or Groq]
-    WS[Web Search Tool]
+    Agent --> API
+    API -->|JSON Response| UI
+    UI -->|Output| User
 
-    %% Connections
-    FE -->|JSON or CSV Upload| API
-    API -->|Response| FE
+    LLM[LLM Providers<br/>OpenAI | Gemini | Groq]
 
-    AG -->|Prompt| LLM
-    LLM -->|Completion| AG
+    Agent -->|Optional Search| Tool
+    Tool[Tavily Search API]
+        -->|Results| Agent
 
-    AG -->|Query| WS
-    WS -->|Results| AG
-
-    RS -->|AlertScores CSV| CSV
-    GA --> NEO
-    CM --> FS
 ```
 ## Component Description
 
