@@ -18,18 +18,18 @@ The system supports persistent chat history using SQLite, tool calling, conversa
 - Clean chat interface built with Streamlit
 
 ---
-
 ## System Design (High Level)
+
 ```mermaid
 flowchart TD
-    U[User (Browser)]
-    UI[Streamlit UI]
-    AG[LangGraph Agent]
+    U["User (Browser)"]
+    UI["Streamlit UI"]
+    AG["LangGraph Agent"]
 
-    LLM[LLM (OpenAI)]
-    TOOLS[Tools<br/>Search | Calculator | Stock API]
+    LLM["LLM (OpenAI)"]
+    TOOLS["Tools: Search, Calculator, Stock API"]
 
-    DB[SQLite Checkpointer]
+    DB["SQLite Checkpointer"]
 
     U --> UI
     UI --> AG
