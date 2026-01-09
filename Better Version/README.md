@@ -18,21 +18,29 @@ The system supports persistent chat history using SQLite, tool calling, conversa
 - Clean chat interface built with Streamlit
 
 ---
-
-## System Design (High Level)
-
+## System Design (End-to-End Conversation Flow)
+```mermaid
 flowchart TD
-    U[User (Browser)]
-    UI[Streamlit UI]
-    AG[LangGraph Agent]
+    START["Start Conversation"]
 
-    LLM[LLM (OpenAI)]
-    TOOLS[Tools<br/>Search | Calculator | Stock API]
+    U["User (Browser)"]
+    UI["Streamlit UI"]
 
-    DB[SQLite Checkpointer]
+    API["FastAPI Endpoint (/chat)"]
 
+    AG["LangGraph Agent"]
+    LLM["LLM (OpenAI)"]
+    TOOLS["Tools: Search, Calculator, Stock API"]
+
+    DB["SQLite Checkpointer"]
+
+    RESP["AI Response Displayed"]
+    END["End Conversation"]
+
+    START --> U
     U --> UI
-    UI --> AG
+    UI --> API
+    API --> AG
 
     AG --> LLM
     AG --> TOOLS
@@ -40,7 +48,12 @@ flowchart TD
     AG --> DB
     DB --> AG
 
+    AG --> API
+    API --> UI
+    UI --> RESP
 
+    RESP --> END
+```
 Each conversation is identified by a unique `thread_id`, allowing safe persistence, retrieval, and continuation of chats.
 
 ---
