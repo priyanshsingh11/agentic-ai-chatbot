@@ -19,7 +19,6 @@ The system supports persistent chat history using SQLite, tool calling, conversa
 
 ---
 ## System Design (High Level)
-
 ```mermaid
 flowchart TD
     U["User (Browser)"]
@@ -40,7 +39,6 @@ flowchart TD
     AG --> DB
     DB --> AG
 ```
-
 Each conversation is identified by a unique `thread_id`, allowing safe persistence, retrieval, and continuation of chats.
 
 ---
