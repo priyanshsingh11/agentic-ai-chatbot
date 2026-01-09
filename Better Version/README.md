@@ -1,7 +1,7 @@
 # LangGraph Agentic Chatbot (SQLite, Tools, Streaming)
 
 A minimal, production-style agentic AI chatbot built using LangGraph, LangChain, and Streamlit.  
-The system supports persistent chat history using SQLite, tool calling, conversation resume, and token-level streaming.
+The system supports persistent chat history using SQLite, tool calling, conversation resume, and token-level streaming, RAG
 
 ---
 
@@ -16,6 +16,10 @@ The system supports persistent chat history using SQLite, tool calling, conversa
   - Stock price lookup
 - Agentic workflow powered by LangGraph
 - Clean chat interface built with Streamlit
+- Retrieval-Augmented Generation (RAG) support
+  - Document-based question answering
+  - Context retrieval from vector store
+  - Grounded responses using external knowledge
 
 ---
 ## System Design (End-to-End Conversation Flow)
@@ -32,6 +36,9 @@ flowchart TD
     LLM["LLM (OpenAI)"]
     TOOLS["Tools: Search, Calculator, Stock API"]
 
+    RET["RAG Retriever"]
+    VS["Vector Store"]
+
     DB["SQLite Checkpointer"]
 
     RESP["AI Response Displayed"]
@@ -41,6 +48,11 @@ flowchart TD
     U --> UI
     UI --> API
     API --> AG
+
+    AG --> RET
+    RET --> VS
+    VS --> RET
+    RET --> AG
 
     AG --> LLM
     AG --> TOOLS
@@ -80,7 +92,8 @@ Each conversation is identified by a unique `thread_id`, allowing safe persisten
 
 - DuckDuckGo Search for live web queries  
 - Calculator tool for arithmetic operations  
-- Stock price tool for fetching market data  
+- Stock price tool for fetching market data
+- RAG retriever for fetching relevant document context
 
 Tools are invoked automatically by the agent when required.
 
