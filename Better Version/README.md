@@ -47,7 +47,6 @@ Each conversation is identified by a unique `thread_id`, allowing safe persisten
 
 ## Project Structure
 <pre>
-.
 ├── streamlit_frontend_streaming.py   <!-- Streaming chat UI -->
 ├── streamlit_frontend_database.py    <!-- Resume chat with SQLite -->
 ├── streamlit_frontend_tools.py       <!-- Tool-aware UI with status -->
